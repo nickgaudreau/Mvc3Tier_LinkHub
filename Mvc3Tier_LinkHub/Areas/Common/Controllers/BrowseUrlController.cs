@@ -11,6 +11,7 @@ namespace Mvc3Tier_LinkHub.Areas.Common.Controllers
         // GET: Common/BrowseUrl
         public ActionResult Index()
         {
+
             return View();
         }
     }
