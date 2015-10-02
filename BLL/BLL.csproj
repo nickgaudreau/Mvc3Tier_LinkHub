@@ -39,8 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoryBl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UrlBl.cs" />
+    <Compile Include="UserBl.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BOL\BOL.csproj">

@@ -43,8 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoryDbRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UrlDbRepository.cs" />
+    <Compile Include="UserDbRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BOL\BOL.csproj">

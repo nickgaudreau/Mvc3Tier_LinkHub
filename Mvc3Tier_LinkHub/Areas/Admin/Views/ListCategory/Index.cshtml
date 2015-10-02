@@ -1,8 +1,79 @@
-﻿
+﻿@model IEnumerable<BOL.tbl_Category>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Users";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Categories</h2>
+@if (TempData["Msg"] != null)
+{
+    <h3>
+        @TempData["Msg"].ToString()
+    </h3>
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-default" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <!--This will give us 2 query string : http://localhost:51321/Common/BrowseUrl?SortOrder=Asc&SortBy=Title -->
+            @Html.ActionLink("Category Name", "Index",
+                     new { sortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), sortBy = "CategoryName", page = (ViewBag.TotalPages == null ? "1" : ViewBag.Page) })
+        </th>
+        <th>
+            @Html.ActionLink("Category Description", "Index",
+                                  new { sortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), sortBy = "CategoryDesc", page = (ViewBag.TotalPages == null ? "1" : ViewBag.Page) })
+        </th>
+        <th>Delete</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.c_CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.c_CategoryDesc)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new {id = item.i_CategoryId}, new {onclick = "return ConfirmDelete()"})
+            </td>
+        </tr>
+    }
+
+</table>
+@{
+    double TotalPages = ViewBag.TotalPages;
+}
+@for (int i = 1; i <= TotalPages; i++)
+{
+    if (i == ViewBag.Page) // bold it
+    {
+        <b>
+            @Html.ActionLink(i.ToString(), "Index",
+            new { sortOrder = (ViewBag.SortOrder == null ? "Asc" : ViewBag.SortOrder), sortBy = (ViewBag.SortBy == null ? "CategoryName" : ViewBag.SortBy), page = i })
+        </b>
+        <span> | </span>
+    }
+    else
+    {
+        @Html.ActionLink(i.ToString(), "Index",
+                 new { sortOrder = (ViewBag.SortOrder == null ? "Asc" : ViewBag.SortOrder), sortBy = (ViewBag.SortBy == null ? "CategoryName" : ViewBag.SortBy), page = i })
+        <span> | </span>
+    }
+}
+
+
+@section scripts
+{
+    <script>
+        function ConfirmDelete() {
+            return confirm('Are you sure you want to delete?');
+        }
+    </script>
+}
+
 
