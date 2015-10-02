@@ -11,39 +11,60 @@
     <tr>
         <th>
             <!--This will give us 2 query string : http://localhost:51321/Common/BrowseUrl?SortOrder=Asc&SortBy=Title -->
-            @Html.ActionLink("Title", "Index", 
-            new { sortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc" )) , sortBy = "Title" })
+            @Html.ActionLink("Title", "Index",
+            new {sortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), sortBy = "Title", page = (ViewBag.TotalPages == null ? "1" : ViewBag.Page) })
         </th>
         <th>
             @Html.ActionLink("Url", "Index",
-            new { sortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), sortBy = "Url" })
+                         new { sortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), sortBy = "Url", page = (ViewBag.TotalPages == null ? "1" : ViewBag.Page) })
         </th>
         <th>
             @Html.ActionLink("Description", "Index",
-            new { sortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), sortBy = "Description" })
+                         new { sortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), sortBy = "Description", page = (ViewBag.TotalPages == null ? "1" : ViewBag.Page) })
         </th>
         <th>
             @Html.ActionLink("Category", "Index",
-            new { sortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), sortBy = "Category" })
+                         new { sortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), sortBy = "Category", page = (ViewBag.TotalPages == null ? "1" : ViewBag.Page) })
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.c_UrlTitle)
-        </td>
-        <td>
-            <a target="_blank" href="@item.c_Url">@item.c_Url</a>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.c_UrlDesc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tbl_Category.c_CategoryName)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.c_UrlTitle)
+            </td>
+            <td>
+                <a target="_blank" href="@item.c_Url">@item.c_Url</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.c_UrlDesc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tbl_Category.c_CategoryName)
+            </td>
+        </tr>
+    }
 
 </table>
+@{
+    double TotalPages = ViewBag.TotalPages;
+}
+@for (int i = 1; i <= TotalPages; i++)
+{
+    if (i == ViewBag.Page) // bold it
+    {
+        <b>
+        @Html.ActionLink(i.ToString(), "Index",
+            new {sortOrder = (ViewBag.SortOrder == null ? "Asc" : ViewBag.SortOrder), sortBy = (ViewBag.SortBy == null ? "Title" : ViewBag.SortBy), page = i})
+        </b>
+        <span> | </span>
+    }
+    else
+    {
+        @Html.ActionLink(i.ToString(), "Index",
+            new { sortOrder = (ViewBag.SortOrder == null ? "Asc" : ViewBag.SortOrder), sortBy = (ViewBag.SortBy == null ? "Title" : ViewBag.SortBy), page = i })
+        <span> | </span>
+    }
+}
