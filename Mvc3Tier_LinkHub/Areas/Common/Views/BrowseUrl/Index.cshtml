@@ -10,16 +10,21 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.c_UrlTitle)
+            <!--This will give us 2 query string : http://localhost:51321/Common/BrowseUrl?SortOrder=Asc&SortBy=Title -->
+            @Html.ActionLink("Title", "Index", 
+            new { sortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc" )) , sortBy = "Title" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.c_Url)
+            @Html.ActionLink("Url", "Index",
+            new { sortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), sortBy = "Url" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.c_UrlDesc)
+            @Html.ActionLink("Description", "Index",
+            new { sortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), sortBy = "Description" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.tbl_Category.c_CategoryName)
+            @Html.ActionLink("Category", "Index",
+            new { sortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), sortBy = "Category" })
         </th>
         <th></th>
     </tr>
