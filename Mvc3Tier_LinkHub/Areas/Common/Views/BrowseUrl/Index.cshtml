@@ -30,7 +30,7 @@
             @Html.DisplayFor(modelItem => item.c_UrlTitle)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.c_Url)
+            <a target="_blank" href="@item.c_Url">@item.c_Url</a>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.c_UrlDesc)

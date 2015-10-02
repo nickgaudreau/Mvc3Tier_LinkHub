@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using BLL;
 
 namespace Mvc3Tier_LinkHub.Areas.Common.Controllers
@@ -18,7 +19,7 @@ namespace Mvc3Tier_LinkHub.Areas.Common.Controllers
         // GET: Common/BrowseUrl
         public ActionResult Index()
         {
-            var urls = objBl.GetAll();
+            var urls = objBl.GetAll().Where(x => x.c_IsApproved == "A").ToList();
             return View(urls);
         }
     }
