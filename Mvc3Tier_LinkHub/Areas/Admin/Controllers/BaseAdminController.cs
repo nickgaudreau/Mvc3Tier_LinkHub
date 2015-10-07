@@ -7,6 +7,7 @@ using BLL;
 
 namespace Mvc3Tier_LinkHub.Areas.Admin.Controllers
 {
+    [Authorize(Roles="A")]
     public class BaseAdminController : Controller
     {
         protected readonly AdminBl _objBl;

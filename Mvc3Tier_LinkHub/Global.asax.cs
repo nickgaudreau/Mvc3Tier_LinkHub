@@ -16,6 +16,7 @@ namespace Mvc3Tier_LinkHub
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            GlobalFilters.Filters.Add(new AuthorizeAttribute()); // this block the whole application
         }
     }
 }

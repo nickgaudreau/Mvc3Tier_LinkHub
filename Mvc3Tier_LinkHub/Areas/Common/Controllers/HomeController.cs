@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Mvc3Tier_LinkHub.Areas.Common.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         // GET: Common/Home

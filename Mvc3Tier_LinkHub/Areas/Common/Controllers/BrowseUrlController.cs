@@ -5,6 +5,7 @@ using BLL;
 
 namespace Mvc3Tier_LinkHub.Areas.Common.Controllers
 {
+    [AllowAnonymous]
     public class BrowseUrlController : Controller
     {
 

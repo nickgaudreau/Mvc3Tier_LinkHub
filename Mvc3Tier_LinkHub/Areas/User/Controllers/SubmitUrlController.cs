@@ -7,7 +7,7 @@ using BOL;
 using BLL;
 
 namespace Mvc3Tier_LinkHub.Areas.User.Controllers
-{
+{    
     public class SubmitUrlController : Controller
     {
         //private CategoryBl _objBlCat;
@@ -39,6 +39,11 @@ namespace Mvc3Tier_LinkHub.Areas.User.Controllers
         {
             try
             {
+                // set default to 'P'ending
+                url.c_IsApproved = "P";
+                // get user id from this session current authenticated user
+                url.i_UserId = _objBl.userBl.GetAll().FirstOrDefault(x => x.c_UserEmail == User.Identity.Name).i_UserId;
+
                 if (ModelState.IsValid)
                 {
                     _objBl.urlBl.Insert(url);
@@ -57,7 +62,7 @@ namespace Mvc3Tier_LinkHub.Areas.User.Controllers
                 TempData["Msg"] = "Insertion Fail: " + e1.Message + " Error relate to: " + e1.Source;
                 return RedirectToAction("Index");
             }
-            return View();
+            return View("Index");
         }
 
     }

@@ -7,6 +7,7 @@ using BOL;
 
 namespace Mvc3Tier_LinkHub.Areas.Security.Controllers
 {
+    [AllowAnonymous]
     public class RegisterController : BaseSecurityController
     {
         // GET: Security/Register
