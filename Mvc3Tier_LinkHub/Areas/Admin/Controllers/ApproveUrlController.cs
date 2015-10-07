@@ -64,19 +64,19 @@ namespace Mvc3Tier_LinkHub.Areas.Admin.Controllers
 
         public ActionResult StatusUpdate(int id, string status)
         {
-            //try
-            //{
+            try
+            {
                 var thisUrl = _objBl.urlBl.GetById(id);
                 thisUrl.c_IsApproved = status;
                 _objBl.urlBl.Update(thisUrl);
                 TempData["Msg"] = "Success!";
                 return RedirectToAction("Index");
-            //}
-            //catch (Exception e1)
-            //{
-            //    TempData["Msg"] = "Failed: " + e1.Message + " Error relate to: " + e1.Source;
-            //    return RedirectToAction("Index");
-            //}
+            }
+            catch (Exception e1)
+            {
+                TempData["Msg"] = "Failed: " + e1.Message + " Error relate to: " + e1.Source;
+                return RedirectToAction("Index");
+            }
         }
 
 

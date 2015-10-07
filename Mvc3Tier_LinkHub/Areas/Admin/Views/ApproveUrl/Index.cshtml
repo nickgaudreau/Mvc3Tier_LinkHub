@@ -69,7 +69,7 @@ else
         <tr>
             <td>
                 @Html.ActionLink("Approve", "StatusUpdate", new { id = item.i_UrlId, status = "A"}, new {onclick="return ConfirmApprove();" }) |
-                @Html.ActionLink("Reject", "Reject", new { id = item.i_UrlId }, new { onclick = "return ConfirmReject();" })
+                @Html.ActionLink("Reject", "StatusUpdate", new { id = item.i_UrlId, status = "R" }, new { onclick = "return ConfirmReject();" })
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.c_UrlTitle)

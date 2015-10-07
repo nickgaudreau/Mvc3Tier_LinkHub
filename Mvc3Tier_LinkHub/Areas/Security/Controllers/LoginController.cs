@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Mvc3Tier_LinkHub.Areas.Security.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : BaseSecurityController
     {
         // GET: Security/Login
         public ActionResult Index()

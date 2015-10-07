@@ -128,6 +128,7 @@
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
     <Compile Include="Areas\Common\Controllers\BrowseUrlController.cs" />
     <Compile Include="Areas\Common\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Security\Controllers\BaseSecurityController.cs" />
     <Compile Include="Areas\Security\Controllers\LoginController.cs" />
     <Compile Include="Areas\Security\Controllers\RegisterController.cs" />
     <Compile Include="Areas\Security\SecurityAreaRegistration.cs" />
@@ -154,12 +155,12 @@
     <Content Include="Areas\User\Views\SubmitURL\Index.cshtml" />
     <Content Include="Areas\Common\Views\Home\Index.cshtml" />
     <Content Include="Areas\Security\Views\Login\Index.cshtml" />
-    <Content Include="Areas\Security\Views\Register\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AddCategory\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ListUser\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ApproveUrl\Index.cshtml" />
     <Content Include="Areas\Common\Views\BrowseUrl\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ListCategory\Index.cshtml" />
+    <Content Include="Areas\Security\Views\Register\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -193,6 +194,7 @@
     <Folder Include="Areas\Common\Models\" />
     <Folder Include="Areas\Common\Views\Shared\" />
     <Folder Include="Areas\Security\Models\" />
+    <Folder Include="Areas\Security\Views\BaseSecurity\" />
     <Folder Include="Areas\Security\Views\Shared\" />
     <Folder Include="Areas\User\Models\" />
     <Folder Include="Areas\User\Views\Shared\" />
