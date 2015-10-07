@@ -5,23 +5,15 @@ using BLL;
 
 namespace Mvc3Tier_LinkHub.Areas.Admin.Controllers
 {
-    public class ListUserController : Controller
+    public class ListUserController : BaseAdminController
     {
-        private UserBl objBl = new UserBl();
-
-        // Constructor instantiate every time we call Controller
-        public ListUserController()
-        {
-            objBl = new UserBl();
-        }
-
-
+        
         // GET: Common/BrowseUrl
         public ActionResult Index(string sortOrder, string sortBy, string page)
         {
             ViewBag.SortOrder = sortOrder; // we pass this so the opposite sorting is pass into the Query string when clicked again
             ViewBag.SortBy = sortBy;
-            var users = objBl.GetAll();
+            var users = _objBl.userBl.GetAll();
 
             switch (sortBy)
             {
@@ -60,7 +52,7 @@ namespace Mvc3Tier_LinkHub.Areas.Admin.Controllers
             }
 
             // Find page count. If 10 records per page and we have 37 records then it is 4 pages
-            ViewBag.TotalPages = Math.Ceiling(objBl.GetAll().Count() /10.0 );
+            ViewBag.TotalPages = Math.Ceiling(_objBl.userBl.GetAll().Count() /10.0 );
 
             int currentPage = int.Parse(page == null ? "1" : page);
 

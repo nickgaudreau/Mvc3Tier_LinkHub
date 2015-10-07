@@ -5,8 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-
+<h2>Submit Url!</h2>
+@if (TempData["Msg"] != null)
+{
+    <h3 class="text-info">
+        @TempData["Msg"].ToString()
+    </h3>
+}
 
 @using (Html.BeginForm("Create", "SubmitUrl", FormMethod.Post)) 
 {
@@ -48,10 +53,10 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.i_UserId, "i_UserId", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.i_UserId, "UserId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("i_UserId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.i_UserId, (SelectList)ViewBag.UserId, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.i_UserId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -59,10 +64,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.c_IsApproved, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.c_IsApproved, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.c_IsApproved, new { htmlAttributes = new { @text="A", @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.c_IsApproved, "", new { @class = "text-danger" })
             </div>
-        </div>*@
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -70,8 +75,4 @@
             </div>
         </div>
     </div>
-}
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
 }

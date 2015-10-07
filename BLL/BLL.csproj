@@ -39,9 +39,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminBl.cs" />
+    <Compile Include="BaseBl.cs" />
     <Compile Include="CategoryBl.cs" />
+    <Compile Include="CommonBl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SecurityBl.cs" />
     <Compile Include="UrlBl.cs" />
+    <Compile Include="UserAreaBl.cs" />
     <Compile Include="UserBl.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -53,6 +58,9 @@
       <Project>{2ae252e3-cc4c-4eaf-b26b-01833146103c}</Project>
       <Name>DAL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DiagramBl.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

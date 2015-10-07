@@ -40,7 +40,12 @@ namespace DAL
 
         public void Update(tbl_Url url)
         {
+            //db.Entry(url).State = EntityState.Modified; //?? why Silently! not working GOOGle it
+
             db.Entry(url).State = EntityState.Modified;
+            db.Configuration.ValidateOnSaveEnabled = false;
+            Save();
+            db.Configuration.ValidateOnSaveEnabled = true;
         }
 
         private void Save()

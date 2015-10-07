@@ -8,12 +8,12 @@ namespace Mvc3Tier_LinkHub.Areas.Common.Controllers
     public class BrowseUrlController : Controller
     {
 
-        private readonly UrlBl _objBl;
+        private readonly CommonBl _objBl;
 
         // Constructor instantiate every time we call Controller
         public BrowseUrlController()
         {
-            _objBl = new UrlBl();
+            _objBl = new CommonBl();
         }
 
 
@@ -22,7 +22,7 @@ namespace Mvc3Tier_LinkHub.Areas.Common.Controllers
         {
             ViewBag.SortOrder = sortOrder; // we pass this so the opposite sorting is pass into the Query string when clicked again
             ViewBag.SortBy = sortBy;
-            var urls = _objBl.GetAll().Where(x => x.c_IsApproved == "A");
+            var urls = _objBl.urlBl.GetAll().Where(x => x.c_IsApproved == "A");
 
             switch (sortBy)
             {
@@ -89,7 +89,7 @@ namespace Mvc3Tier_LinkHub.Areas.Common.Controllers
             }
 
             // Find page count. If 10 records per page and we have 37 records then it is 4 pages
-            ViewBag.TotalPages = Math.Ceiling(_objBl.GetAll().Count(x => x.c_IsApproved == "A") /10.0 );
+            ViewBag.TotalPages = Math.Ceiling(_objBl.urlBl.GetAll().Count(x => x.c_IsApproved == "A") /10.0 );
 
             int currentPage = int.Parse(page == null ? "1" : page);
 

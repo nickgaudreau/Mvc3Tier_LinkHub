@@ -5,23 +5,14 @@ using BLL;
 
 namespace Mvc3Tier_LinkHub.Areas.Admin.Controllers
 {
-    public class ListCategoryController : Controller
+    public class ListCategoryController : BaseAdminController
     {
-        private readonly CategoryBl _objBl;
-
-        // Constructor instantiate every time we call Controller
-        public ListCategoryController()
-        {
-            _objBl = new CategoryBl();
-        }
-
-
         // GET: Common/BrowseUrl
         public ActionResult Index(string sortOrder, string sortBy, string page)
         {
             ViewBag.SortOrder = sortOrder; // we pass this so the opposite sorting is pass into the Query string when clicked again
             ViewBag.SortBy = sortBy;
-            var categories = _objBl.GetAll();
+            var categories = _objBl.categoryBl.GetAll();
 
             switch (sortBy)
             {
@@ -60,7 +51,7 @@ namespace Mvc3Tier_LinkHub.Areas.Admin.Controllers
             }
 
             // Find page count. If 10 records per page and we have 37 records then it is 4 pages
-            ViewBag.TotalPages = Math.Ceiling(_objBl.GetAll().Count() /10.0 );
+            ViewBag.TotalPages = Math.Ceiling(_objBl.categoryBl.GetAll().Count() /10.0 );
 
             int currentPage = int.Parse(page == null ? "1" : page);
 
@@ -77,7 +68,7 @@ namespace Mvc3Tier_LinkHub.Areas.Admin.Controllers
         {
             try
             {
-                _objBl.Delete(id);
+                _objBl.categoryBl.Delete(id);
                 TempData["Msg"] = "Deleted Successfully!";
                 return RedirectToAction("Index");
             }
@@ -87,5 +78,8 @@ namespace Mvc3Tier_LinkHub.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+
+
     }
 }

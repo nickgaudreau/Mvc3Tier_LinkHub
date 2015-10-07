@@ -24,9 +24,9 @@ namespace DAL
             return db.tbl_User.Find(id);
         }
 
-        public void Insert(tbl_User url)
+        public void Insert(tbl_User user)
         {
-            db.tbl_User.Add(url);
+            db.tbl_User.Add(user);
             Save();
         }
 
@@ -37,9 +37,13 @@ namespace DAL
             Save();
         }
 
-        public void Update(tbl_User url)
+        public void Update(tbl_User user)
         {
-            db.Entry(url).State = EntityState.Modified;
+            //db.Entry(user).State = EntityState.Modified;
+            db.Entry(user).State = EntityState.Modified;
+            db.Configuration.ValidateOnSaveEnabled = false;
+            Save();
+            db.Configuration.ValidateOnSaveEnabled = true;
         }
 
         private void Save()

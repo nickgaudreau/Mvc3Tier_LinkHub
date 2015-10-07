@@ -13,7 +13,7 @@
 }
 
 <p>
-    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-default" })
+    @Html.ActionLink("Create New", "Index", "AddCategory", null, new { @class = "btn btn-default" })
 </p>
 <table class="table">
     <tr>
@@ -39,7 +39,7 @@
                 @Html.DisplayFor(modelItem => item.c_CategoryDesc)
             </td>
             <td>
-                @Html.ActionLink("Delete", "Delete", new {id = item.i_CategoryId}, new {onclick = "return ConfirmDelete()"})
+                @Html.ActionLink("Delete", "Delete", new { id = item.i_CategoryId }, new { onclick = "return ConfirmDelete()" })
             </td>
         </tr>
     }

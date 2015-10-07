@@ -24,9 +24,9 @@ namespace DAL
             return db.tbl_Category.Find(id);
         }
 
-        public void Insert(tbl_Category url)
+        public void Insert(tbl_Category cat)
         {
-            db.tbl_Category.Add(url);
+            db.tbl_Category.Add(cat);
             Save();
         }
 
@@ -37,9 +37,14 @@ namespace DAL
             Save();
         }
 
-        public void Update(tbl_Category url)
+        public void Update(tbl_Category cat)
         {
-            db.Entry(url).State = EntityState.Modified;
+            //db.Entry(cat).State = EntityState.Modified;
+
+            db.Entry(cat).State = EntityState.Modified;
+            db.Configuration.ValidateOnSaveEnabled = false;
+            Save();
+            db.Configuration.ValidateOnSaveEnabled = true;
         }
 
         private void Save()
