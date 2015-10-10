@@ -23,8 +23,7 @@
                     <!-- Always display-->
                     <li>@Html.ActionLink("Home", "Index", new {Controller = "Home", Area = "Common"})</li>
                     <li>@Html.ActionLink("BrowseUrls", "Index", new { Controller = "BrowseUrl", Area = "Common" })</li>
-                    <li>@Html.ActionLink("Register", "Index", new { Controller = "Register", Area = "Security" })</li> 
-                    
+                                        
                     <!-- Display only if logged in-->
                     @if (User.Identity.IsAuthenticated) { 
                         if(User.IsInRole("A")) { 
@@ -38,6 +37,7 @@
                     }
                     else
                     {
+                        <li>@Html.ActionLink("Register", "Index", new { Controller = "Register", Area = "Security" })</li>
                         <li>@Html.ActionLink("Login", "Index", new { Controller = "Login", Area = "Security" })</li>
                     }                
 
