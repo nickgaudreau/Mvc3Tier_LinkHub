@@ -8,9 +8,19 @@
 <h2>Submit Url!</h2>
 @if (TempData["Msg"] != null)
 {
-    <h3 class="text-info">
-        @TempData["Msg"].ToString()
-    </h3>
+    if (TempData["Msg"].ToString() == "Created Successfully!") { 
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>@TempData["Msg"].ToString()</strong>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>@TempData["Msg"].ToString()</strong>
+        </div>
+    }
 }
 
 @using (Html.BeginForm("Create", "SubmitUrl", FormMethod.Post)) 
@@ -18,7 +28,6 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>tbl_Url</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">

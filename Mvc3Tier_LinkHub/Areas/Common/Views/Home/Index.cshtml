@@ -1,8 +1,81 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+@section css{
+    <link href="~/engine1/style.css" rel="stylesheet" />
+}
+
+<h2>Welcome to Link Hub</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <div id="wowslider-container1">
+            <div class="ws_images">
+                <ul>
+                    <li><img src="~/data1/images/url.jpg" alt="LinkHub" title="LinkHub" id="wows1_0" />Do you have a link worth sharing?</li>
+                    <li><img src="~/data1/images/registerhere.jpg" alt="Register" title="Register" id="wows1_1" />Just register here to share it.</li>
+                    <li><img src="~/data1/images/publish.jpg" alt="Publish" title="Publish" id="wows1_2" />Will be published, once it is approved by Admin.</li>
+                    <li><img src="~/data1/images/mvc1.png" alt="Asp.Net MVC And Entity Framework" title="Asp.Net MVC And Entity Framework" id="wows1_3" />This portal is developed using Asp.Net MVC and Entity Framework.</li>
+                    <li><a href="https://www.udemy.com/aspnet-web-app-on-3-tier-architecture/" target="_blank"><img src="~/data1/images/learn.jpg" alt="Enroll Now" title="Enroll Now" id="wows1_4" /></a>Are you interested to learn how?</li>
+                </ul>
+            </div>
+            <div class="ws_bullets">
+                <div>
+                    <a href="#" title="LinkHub"><img src="~/data1/tooltips/url.jpg" alt="LinkHub" />1</a>
+                    <a href="#" title="Register"><img src="~/data1/tooltips/registerhere.jpg" alt="Register" />2</a>
+                    <a href="#" title="Publish"><img src="~/data1/tooltips/publish.jpg" alt="Publish" />3</a>
+                    <a href="#" title="Asp.Net MVC And Entity Framework"><img src="~/data1/tooltips/mvc1.png" alt="Asp.Net MVC And Entity Framework" />4</a>
+                    <a href="#" title="Enroll Now"><img src="~/data1/tooltips/learn.jpg" alt="Enroll Now" />5</a>
+                </div>
+            </div>
+            <span class="wsl"><a href="#">Header Slider</a> by WOWSlider.com v5.2</span>
+            <div class="ws_shadow"></div>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="margin-top:50px;">
+    <div class="col-md-4">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h3 class="panel-title">Panel title</h3>
+            </div>
+            <div class="panel-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore mag.</p>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h3 class="panel-title">Panel title</h3>
+            </div>
+            <div class="panel-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore mag.</p>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h3 class="panel-title">Panel title</h3>
+            </div>
+            <div class="panel-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore mag.</p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script src="~/engine1/wowslider.js"></script>
+    <script src="~/engine1/script.js"></script>
+}
 

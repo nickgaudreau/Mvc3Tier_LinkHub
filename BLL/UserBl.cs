@@ -25,9 +25,9 @@ namespace BLL
             return objDb.GetById(id);
         }
 
-        public void Insert(tbl_User url)
+        public void Insert(tbl_User user)
         {
-            objDb.Insert(url);
+            objDb.Insert(user);
         }
 
         public void Delete(int id)
@@ -35,9 +35,9 @@ namespace BLL
            objDb.Delete(id);
         }
 
-        public void Update(tbl_User url)
+        public void Update(tbl_User user)
         {
-            objDb.Update(url);
+            objDb.Update(user);
         }
     }
 }

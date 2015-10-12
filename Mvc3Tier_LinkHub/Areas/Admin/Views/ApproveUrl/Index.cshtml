@@ -8,9 +8,20 @@
 <h2>Manage URLs</h2>
 @if (TempData["Msg"] != null)
 {
-    <h3 class="text-info">
-        @TempData["Msg"].ToString()
-    </h3>
+    if (TempData["Msg"].ToString() == "Success!")
+    {
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>@TempData["Msg"].ToString()</strong>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>@TempData["Msg"].ToString()</strong>
+        </div>
+    }
 }
 @if (ViewBag.Status == "P")
 {
@@ -39,8 +50,8 @@ else
     @Html.ActionLink("Rejected Urls", "Index", new { status = "R" })
 }
 
-<table class="table">
-    <tr>
+<table class="table table-hover table-striped table-responsive">
+    <tr class="warning">
         <th>
             Approved / Rejected
         </th>
@@ -68,7 +79,7 @@ else
     {
         <tr>
             <td>
-                @Html.ActionLink("Approve", "StatusUpdate", new { id = item.i_UrlId, status = "A"}, new {onclick="return ConfirmApprove();" }) |
+                @Html.ActionLink("Approve", "StatusUpdate", new { id = item.i_UrlId, status = "A" }, new { onclick = "return ConfirmApprove();" }) |
                 @Html.ActionLink("Reject", "StatusUpdate", new { id = item.i_UrlId, status = "R" }, new { onclick = "return ConfirmReject();" })
             </td>
             <td>

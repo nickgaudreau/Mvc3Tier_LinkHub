@@ -5,14 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>URLs</h2>
+<h2>Shared URLs</h2>
 
-<table class="table">
-    <tr>
+<table class="table table-hover table-striped table-responsive">
+    <tr class="warning">
         <th>
             <!--This will give us 2 query string : http://localhost:51321/Common/BrowseUrl?SortOrder=Asc&SortBy=Title -->
             @Html.ActionLink("Title", "Index",
-            new {sortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), sortBy = "Title", page = (ViewBag.TotalPages == null ? "1" : ViewBag.Page) })
+            new { sortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), sortBy = "Title", page = (ViewBag.TotalPages == null ? "1" : ViewBag.Page) })
         </th>
         <th>
             @Html.ActionLink("Url", "Index",
@@ -51,20 +51,22 @@
 @{
     double TotalPages = ViewBag.TotalPages;
 }
-@for (int i = 1; i <= TotalPages; i++)
-{
-    if (i == ViewBag.Page) // bold it
+<ul class="pagination">
+    @for (int i = 1; i <= TotalPages; i++)
     {
-        <b>
-        @Html.ActionLink(i.ToString(), "Index",
-            new {sortOrder = (ViewBag.SortOrder == null ? "Asc" : ViewBag.SortOrder), sortBy = (ViewBag.SortBy == null ? "Title" : ViewBag.SortBy), page = i})
-        </b>
-        <span> | </span>
-    }
-    else
-    {
-        @Html.ActionLink(i.ToString(), "Index",
+        if (i == ViewBag.Page) // bold it
+        {
+            <li class="active">
+                @Html.ActionLink(i.ToString(), "Index",
             new { sortOrder = (ViewBag.SortOrder == null ? "Asc" : ViewBag.SortOrder), sortBy = (ViewBag.SortBy == null ? "Title" : ViewBag.SortBy), page = i })
-        <span> | </span>
+            </li>
+        }
+        else
+        {
+            <li>
+                @Html.ActionLink(i.ToString(), "Index",
+            new { sortOrder = (ViewBag.SortOrder == null ? "Asc" : ViewBag.SortOrder), sortBy = (ViewBag.SortBy == null ? "Title" : ViewBag.SortBy), page = i })
+            </li>
+        }
     }
-}
+</ul>
