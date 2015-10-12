@@ -26,6 +26,7 @@ namespace DAL
 
         public void Insert(tbl_User user)
         {
+            //user.c_Password = Hashing.HashPassword(user.c_Password);
             db.tbl_User.Add(user);
             Save();
         }
