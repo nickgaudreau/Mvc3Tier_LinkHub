@@ -62,7 +62,6 @@ namespace Mvc3Tier_LinkHub.Areas.User.Controllers
                 TempData["Msg"] = "Insertion Fail: " + e1.Message + " Error relate to: " + e1.Source;
                 return RedirectToAction("Index");
             }
-            return View("Index");
         }
 
     }

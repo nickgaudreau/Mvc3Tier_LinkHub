@@ -6,18 +6,8 @@ using BLL;
 namespace Mvc3Tier_LinkHub.Areas.Common.Controllers
 {
     [AllowAnonymous]
-    public class BrowseUrlController : Controller
+    public class BrowseUrlController : BaseCommonController
     {
-
-        private readonly CommonBl _objBl;
-
-        // Constructor instantiate every time we call Controller
-        public BrowseUrlController()
-        {
-            _objBl = new CommonBl();
-        }
-
-
         // GET: Common/BrowseUrl
         public ActionResult Index(string sortOrder, string sortBy, string page)
         {

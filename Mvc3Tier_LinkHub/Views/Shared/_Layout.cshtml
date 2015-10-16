@@ -24,7 +24,8 @@
                 <ul class="nav navbar-nav">
                     <!-- Always display-->
                     <li>@Html.ActionLink("Home", "Index", new {Controller = "Home", Area = "Common"})</li>
-                    <li>@Html.ActionLink("BrowseUrls", "Index", new { Controller = "BrowseUrl", Area = "Common" })</li>
+                    <li>@Html.ActionLink("BrowseUrls", "Index", new {Controller = "BrowseUrl", Area = "Common"})</li>
+                    <li>@Html.ActionLink("Quick Submit", "Index", new { Controller = "QuickSubmit", Area = "Common" })</li>
                                         
                     <!-- Display only if logged in-->
                     @if (User.Identity.IsAuthenticated) { 
@@ -52,8 +53,8 @@
         <hr />
         <footer>
             <blockquote class="pull-right">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                <small>Someone famous in <cite title="Source Title">&copy; @DateTime.Now.Year - Link Hub</cite></small>
+                <p>This is a Test MVC Application with Register, Login, Submit URLs, and Admin Features.</p>
+                <small>Develop by Nick Goodrow <cite title="Source Title">&copy; @DateTime.Now.Year - Link Hub</cite></small>
             </blockquote>
         </footer>
     </div>
