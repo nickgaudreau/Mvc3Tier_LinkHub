@@ -13,7 +13,7 @@ namespace Mvc3Tier_LinkHub.Areas.Common.Controllers
         {
             ViewBag.SortOrder = sortOrder; // we pass this so the opposite sorting is pass into the Query string when clicked again
             ViewBag.SortBy = sortBy;
-            var urls = _objBl.urlBl.GetAll().Where(x => x.c_IsApproved == "A");
+            var urls = _objBl.urlBl.GetAll().Where(x => x.c_IsApproved == BOL.Url.StatusAuthorized.Value);
 
             switch (sortBy)
             {

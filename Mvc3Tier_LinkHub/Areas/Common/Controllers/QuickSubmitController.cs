@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using BOL;
 
@@ -21,15 +19,12 @@ namespace Mvc3Tier_LinkHub.Areas.Common.Controllers
         {
             try
             {
-                // set default to 'P'ending
-                quickSubmit.Url.c_IsApproved = "P";
-
-                // Need to Create a user...
-
+                ModelState.Remove("User.c_Password");
+                ModelState.Remove("User.c_ConfirmPassword");
+                ModelState.Remove("Url.c_UrlDesc");
                 if (ModelState.IsValid)
                 {
-                    // also need to insert user
-                    _objBl.urlBl.Insert(quickSubmit.Url);
+                    _objBl.InsertQuickSubmit(quickSubmit);
                     TempData["Msg"] = "Created Successfully!";
                     return RedirectToAction("Index");
                 }

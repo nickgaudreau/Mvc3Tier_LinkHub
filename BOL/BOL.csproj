@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Category.cs" />
     <Compile Include="LinkHubModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -77,6 +78,8 @@
       <DependentUpon>LinkHubModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_UserValidation.cs" />
+    <Compile Include="Url.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="LinkHubModel.edmx">
