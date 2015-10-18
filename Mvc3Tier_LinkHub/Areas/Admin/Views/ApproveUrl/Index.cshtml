@@ -106,49 +106,101 @@ else
 </table>
 
 <input type="button" id="Approve" value="Approve" class="btn btn-primary" /> |
-<input type="button" id="Reject" value="Reject" class="btn btn-primary" />
+<input type="button" id="Reject" value="Reject" class="btn btn-primary"/>
+
+<!-- Modal Loading -->
+
+<div id="loading" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>*@
+                <h4 class="modal-title">Loading</h4>
+            </div>
+            <div class="modal-body">
+                <div class="progress progress-striped active">
+                    <div class="progress-bar" style="width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section scripts{
     <script>
-    $(document).ready(function() {
+        $(document).ready(function () {
 
-        $("#SelectAll").click(function(event) { // our main ckBox
-            if (this.checked) { // check status if checked
-                $(".ckb").each(function() { // loop through all individuals checkbox
-                    this.checked = true;
-                });
-            } else {
-                $(".ckb").each(function() {
-                    this.checked = false;
-                });
+            $(document).ajaxStart(function() {
+                $('#loading').show();
+            });
+
+            $(document).ajaxStop(function () {
+                $('#loading').hide();
+            });
+
+
+            $("#SelectAll").click(function(event) { // our main ckBox
+                if (this.checked) { // check status if checked
+                    $(".ckb").each(function() { // loop through all individuals checkbox
+                        this.checked = true;
+                    });
+                } else {
+                    $(".ckb").each(function() {
+                        this.checked = false;
+                    });
+                }
+            });
+
+            $('#Approve').click(function() {
+                // check all checkboxes and store it as an array
+                checkedIds = $('.ckb').filter(":checked").map(function() { return this.id; });
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("ApproveOrRejectAll", "ApproveUrl")',
+                        traditional: true, // this is needed for MVC ajax calling process
+                        data: { Ids: checkedIds.toArray(), Status: '@BOL.Url.StatusAuthorized.Value'},
+                        success: successApp,
+                        error: errorApp
+                    });
+
+            });
+
+            function successApp(data, status) {
+                location.reload(); // reload the page
             }
-        });
 
-        $('#Approve').click(function() {
+            function errorApp() {
+                alert('error!');
+            }
 
-            // check all checkboxes and store it as an array
-            checkedIds = $('.ckb').filter(":checked").map(function() { return this.id; });
 
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("ApproveOrRejectAll", "ApproveUrl")',
+            $('#Reject').click(function () {
+                // check all checkboxes and store it as an array
+                checkedIds = $('.ckb').filter(":checked").map(function () { return this.id; });
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("ApproveOrRejectAll", "ApproveUrl")',
                     traditional: true, // this is needed for MVC ajax calling process
-                    data: { Ids: checkedIds.toArray(), Status: '@BOL.Url.StatusAuthorized.Value'},
-                    success: successFunc,
-                    error: errorFunc
+                    data: { Ids: checkedIds.toArray(), Status: '@BOL.Url.StatusRejected.Value' },
+                    success: successRej,
+                    error: errorRej
                 });
 
             });
 
-            function successFunc(data, status) {
+            function successRej(data, status) {
                 location.reload(); // reload the page
             }
 
-            function errorFunc() {
+            function errorRej() {
                 alert('error!');
             }
 
         });
+
+
 
         function ConfirmApprove() {
             return confirm("Are u sure u want to approve?");
