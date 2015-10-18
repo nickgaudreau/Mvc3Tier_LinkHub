@@ -1,0 +1,75 @@
+﻿@model IEnumerable<BOL.tbl_Url>
+
+@if (TempData["Msg"] != null)
+{
+    if (TempData["Msg"].ToString() == "Success!")
+    {
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>@TempData["Msg"].ToString()</strong>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>@TempData["Msg"].ToString()</strong>
+        </div>
+    }
+}
+
+<table class="table table-hover table-striped table-responsive">
+    <tr class="warning">
+        <th>
+            @Html.CheckBox("SelectAll")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.c_UrlTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.c_Url)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.c_UrlDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.c_IsApproved)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_Category.c_CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_User.c_UserEmail)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.CheckBox(item.i_UrlId.ToString(), false, new { @class = "ckb checkbox", Id = item.i_UrlId })
+                @*@Html.ActionLink("Approve", "StatusUpdate", new { id = item.i_UrlId, status = "A" }, new { onclick = "return ConfirmApprove();" }) |
+                    @Html.ActionLink("Reject", "StatusUpdate", new { id = item.i_UrlId, status = "R" }, new { onclick = "return ConfirmReject();" })*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.c_UrlTitle)
+            </td>
+            <td>
+                <a target="_blank" href="@item.c_Url">@item.c_Url</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.c_UrlDesc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.c_IsApproved)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tbl_Category.c_CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tbl_User.c_UserEmail)
+            </td>
+        </tr>
+    }
+</table>
+

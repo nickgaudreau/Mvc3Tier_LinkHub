@@ -62,35 +62,41 @@ namespace Mvc3Tier_LinkHub.Areas.Admin.Controllers
         //    }
         //}
 
-        public ActionResult StatusUpdate(int id, string status)
-        {
-            try
-            {
-                var thisUrl = _objBl.urlBl.GetById(id);
-                thisUrl.c_IsApproved = status;
-                _objBl.urlBl.Update(thisUrl);
-                TempData["Msg"] = "Success!";
-                return RedirectToAction("Index");
-            }
-            catch (Exception e1)
-            {
-                TempData["Msg"] = "Failed: " + e1.Message + " Error relate to: " + e1.Source;
-                return RedirectToAction("Index");
-            }
-        }
+        //public ActionResult StatusUpdate(int id, string status)
+        //{
+        //    try
+        //    {
+        //        var thisUrl = _objBl.urlBl.GetById(id);
+        //        thisUrl.c_IsApproved = status;
+        //        _objBl.urlBl.Update(thisUrl);
+        //        TempData["Msg"] = "Success!";
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch (Exception e1)
+        //    {
+        //        TempData["Msg"] = "Failed: " + e1.Message + " Error relate to: " + e1.Source;
+        //        return RedirectToAction("Index");
+        //    }
+        //}
 
         // Parameter Ids must match the one use in Ajax Call: data: { Ids: checkedIds.toArray(), Status: '@BOL.Url.StatusAuthorized'},
-        [HttpPost]
-        public void ApproveOrRejectAll(List<int> Ids, string Status)
+
+
+        [HttpPost] // Current Status taken dfrom ViewBag = QueryString on page load
+        public ActionResult ApproveOrRejectAll(List<int> Ids, string Status, string CurrentStatus) 
         {
             try
             {
                 _objBl.ApproveOrReject(Ids, Status);
                 TempData["Msg"] = "Success!";
+                var urls = _objBl.urlBl.GetAll().Where(x => x.c_IsApproved == CurrentStatus).ToList();
+                return PartialView("pv_ApproveUrl", urls);
             }
             catch (Exception e1)
             {
                 TempData["Msg"] = "Failed: " + e1.Message + " Error relate to: " + e1.Source;
+                var urls = _objBl.urlBl.GetAll().Where(x => x.c_IsApproved == CurrentStatus).ToList();
+                return PartialView("pv_ApproveUrl", urls);
             }
         }
     }

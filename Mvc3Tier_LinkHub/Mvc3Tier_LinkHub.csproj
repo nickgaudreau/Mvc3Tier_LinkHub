@@ -186,6 +186,7 @@
     <Content Include="Areas\Admin\Views\ListCategory\Index.cshtml" />
     <Content Include="Areas\Security\Views\Register\Index.cshtml" />
     <Content Include="Areas\Common\Views\QuickSubmit\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ApproveUrl\pv_ApproveUrl.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
