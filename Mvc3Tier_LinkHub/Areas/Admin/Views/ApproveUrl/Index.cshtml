@@ -53,7 +53,7 @@ else
 <table class="table table-hover table-striped table-responsive">
     <tr class="warning">
         <th>
-            Approved / Rejected
+            @Html.CheckBox("SelectAll")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.c_UrlTitle)
@@ -79,8 +79,9 @@ else
     {
         <tr>
             <td>
-                @Html.ActionLink("Approve", "StatusUpdate", new { id = item.i_UrlId, status = "A" }, new { onclick = "return ConfirmApprove();" }) |
-                @Html.ActionLink("Reject", "StatusUpdate", new { id = item.i_UrlId, status = "R" }, new { onclick = "return ConfirmReject();" })
+                @Html.CheckBox(item.i_UrlId.ToString(), false, new {@class = "ckb checkbox", Id = item.i_UrlId})
+                @*@Html.ActionLink("Approve", "StatusUpdate", new { id = item.i_UrlId, status = "A" }, new { onclick = "return ConfirmApprove();" }) |
+                @Html.ActionLink("Reject", "StatusUpdate", new { id = item.i_UrlId, status = "R" }, new { onclick = "return ConfirmReject();" })*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.c_UrlTitle)
@@ -102,14 +103,57 @@ else
             </td>
         </tr>
     }
-
 </table>
+
+<input type="button" id="Approve" value="Approve" class="btn btn-primary" /> |
+<input type="button" id="Reject" value="Reject" class="btn btn-primary" />
 
 @section scripts{
     <script>
-        function ConfirmApprove(){
+    $(document).ready(function() {
+
+        $("#SelectAll").click(function(event) { // our main ckBox
+            if (this.checked) { // check status if checked
+                $(".ckb").each(function() { // loop through all individuals checkbox
+                    this.checked = true;
+                });
+            } else {
+                $(".ckb").each(function() {
+                    this.checked = false;
+                });
+            }
+        });
+
+        $('#Approve').click(function() {
+
+            // check all checkboxes and store it as an array
+            checkedIds = $('.ckb').filter(":checked").map(function() { return this.id; });
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("ApproveOrRejectAll", "ApproveUrl")',
+                    traditional: true, // this is needed for MVC ajax calling process
+                    data: { Ids: checkedIds.toArray(), Status: '@BOL.Url.StatusAuthorized.Value'},
+                    success: successFunc,
+                    error: errorFunc
+                });
+
+            });
+
+            function successFunc(data, status) {
+                location.reload(); // reload the page
+            }
+
+            function errorFunc() {
+                alert('error!');
+            }
+
+        });
+
+        function ConfirmApprove() {
             return confirm("Are u sure u want to approve?");
         }
+
         function ConfirmReject() {
             return confirm("Are u sure u want to Reject this url?");
         }

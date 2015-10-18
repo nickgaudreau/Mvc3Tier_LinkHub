@@ -79,6 +79,12 @@ namespace Mvc3Tier_LinkHub.Areas.Admin.Controllers
             }
         }
 
+        // Parameter Ids must match the one use in Ajax Call: data: { Ids: checkedIds.toArray(), Status: '@BOL.Url.StatusAuthorized'},
+        [HttpPost]
+        public ActionResult ApproveOrRejectAll(List<int> Ids, string Status)
+        {
 
+            return RedirectToAction("Index");
+        }
     }
 }
