@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Services;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BOL;
 using BLL;
 using System.Web.Security;
+using Microsoft.Web.WebPages.OAuth;
 
 namespace Mvc3Tier_LinkHub.Areas.Security.Controllers
 {
@@ -45,10 +47,21 @@ namespace Mvc3Tier_LinkHub.Areas.Security.Controllers
 
         public ActionResult SignOut()
         {
-            FormsAuthentication.SignOut();
+            FormsAuthentication.SignOut(); // Our custom login
+            FederatedAuthentication.SessionAuthenticationModule.SignOut(); // For Auth0
             return RedirectToAction("Index", "Home", new { area = "Common" });
         }
 
 
+        //public ActionResult ExternalLogin( string provider)
+        //{
+        //    OAuthWebSecurity.RequestAuthentication(provider, Url.Action("ExternalLoginCallBack"));
+        //    return RedirectToAction("Index", "Home", new { area = "Common" });
+        //}
+
+        //public ActionResult ExternalLoginCallBack()
+        //{
+        //    return RedirectToAction("Index", "Home", new { area = "Common" });
+        //}
     }
 }

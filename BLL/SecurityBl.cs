@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Security;
+using BOL;
 using DAL;
 
 namespace BLL
@@ -220,8 +221,13 @@ namespace BLL
 
         public override string[] GetRolesForUser(string username)
         {
-            string[] roles = { userDb.GetAll().FirstOrDefault(x => x.c_UserEmail == username).c_Role };
-            return roles;
+            var firstOrDefault = userDb.GetAll().FirstOrDefault(x => x.c_UserEmail == username);
+            if (firstOrDefault != null)
+            {
+                string[] roles = {firstOrDefault.c_Role};
+                return roles;
+            }
+            return new string[]{};
         }
 
         public override string[] GetUsersInRole(string roleName)
