@@ -40,11 +40,14 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Login" class="btn btn-default"/> Or
-                <button class="signin-google btn btn-danger">SignIn with Google</button>
+                <button class="signin-google btn btn-danger">SignIn with Google</button> Or
+                @Html.ActionLink("Sign In with Facebook", "ExternalLogin", "Login", new { provider = "facebook"}, new { @class="btn btn-info"})
             </div>
         </div>
     </div>
 }
+
+
 
 
 @section scripts
@@ -58,11 +61,13 @@
         });
 
         // sign-in with social provider with plain redirect
-        $('.signin-google').on('click', function () {
+        $('.signin-google').on('click', function() {
             auth0.signin({ connection: 'google-oauth2' }); // use connection identifier
         });
 
     </script>
+
+    
 }
 
 

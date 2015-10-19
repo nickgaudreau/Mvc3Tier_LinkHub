@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System.Configuration;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -14,6 +15,8 @@ namespace Mvc3Tier_LinkHub
             public static void RegisterProviders()
             {
                 OAuthWebSecurity.RegisterGoogleClient();
+                OAuthWebSecurity.RegisterFacebookClient(
+                    appId: ConfigurationManager.AppSettings["AppId"], appSecret: ConfigurationManager.AppSettings["AppSecret"]);
             }
         }
 

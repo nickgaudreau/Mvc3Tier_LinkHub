@@ -60,6 +60,11 @@
         @RenderBody()
         <hr />
         <footer>
+            <div class="fb-like"
+                 data-share="true"
+                 data-width="450"
+                 data-show-faces="true">
+            </div>
             <blockquote class="pull-right">
                 <p>This is a Test MVC Application with Register, Login, Submit URLs, and Admin Features.</p>
                 <small>Develop by Nick Goodrow <cite title="Source Title">&copy; @DateTime.Now.Year - Link Hub</cite></small>
@@ -71,5 +76,23 @@
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    @*Facebook SDK*@
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '1632679246981718',
+                xfbml: true,
+                version: 'v2.5'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 </body>
 </html>

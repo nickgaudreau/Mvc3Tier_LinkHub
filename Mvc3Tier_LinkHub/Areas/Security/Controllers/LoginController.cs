@@ -52,16 +52,16 @@ namespace Mvc3Tier_LinkHub.Areas.Security.Controllers
             return RedirectToAction("Index", "Home", new { area = "Common" });
         }
 
+        // For FB .. gooogle failed no open id anymore
+        public ActionResult ExternalLogin(string provider)
+        {
+            OAuthWebSecurity.RequestAuthentication(provider, Url.Action("ExternalLoginCallBack"));
+            return RedirectToAction("Index", "Home", new { area = "Common" });
+        }
 
-        //public ActionResult ExternalLogin( string provider)
-        //{
-        //    OAuthWebSecurity.RequestAuthentication(provider, Url.Action("ExternalLoginCallBack"));
-        //    return RedirectToAction("Index", "Home", new { area = "Common" });
-        //}
-
-        //public ActionResult ExternalLoginCallBack()
-        //{
-        //    return RedirectToAction("Index", "Home", new { area = "Common" });
-        //}
+        public ActionResult ExternalLoginCallBack()
+        {
+            return RedirectToAction("Index", "Home", new { area = "Common" });
+        }
     }
 }
