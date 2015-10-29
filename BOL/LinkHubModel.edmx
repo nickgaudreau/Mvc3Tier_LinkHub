@@ -5,6 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Mvc3TierModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="tbl_Category">
           <Key>
             <PropertyRef Name="i_CategoryId" />
@@ -31,7 +41,7 @@
           </Key>
           <Property Name="i_UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="c_UserEmail" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="c_Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="c_Password" Type="varchar" MaxLength="60" Nullable="false" />
           <Property Name="c_Role" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_tbl_Url_tbl_Category">
@@ -59,6 +69,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Mvc3TierModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Category" EntityType="Self.tbl_Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Url" EntityType="Self.tbl_Url" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_User" EntityType="Self.tbl_User" Schema="dbo" store:Type="Tables" />
@@ -104,7 +115,7 @@
           </Key>
           <Property Name="i_UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="c_UserEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="c_Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="c_Password" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="c_Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tbl_Url" Relationship="Self.FK_tbl_Url_tbl_User" FromRole="tbl_User" ToRole="tbl_Url" />
         </EntityType>
@@ -144,7 +155,18 @@
             <End Role="tbl_User" EntitySet="tbl_User" />
             <End Role="tbl_Url" EntitySet="tbl_Url" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="Mvc3TierModel.sysdiagram" />
         </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -180,6 +202,17 @@
                 <ScalarProperty Name="c_UserEmail" ColumnName="c_UserEmail" />
                 <ScalarProperty Name="c_Password" ColumnName="c_Password" />
                 <ScalarProperty Name="c_Role" ColumnName="c_Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Mvc3TierModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -66,6 +66,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuickSubmit.cs" />
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>LinkHubModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="tbl_Category.cs">
       <DependentUpon>LinkHubModel.tt</DependentUpon>
     </Compile>

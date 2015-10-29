@@ -25,7 +25,7 @@ namespace Mvc3Tier_LinkHub.Areas.Security.Controllers
         {
             try
             {
-                // validate user
+                // Bcrypt no change - Changes insidce ValidateUser
                 if (Membership.ValidateUser(user.c_UserEmail, user.c_Password))
                 {
                     FormsAuthentication.SetAuthCookie(user.c_UserEmail, false);

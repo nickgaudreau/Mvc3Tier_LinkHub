@@ -162,13 +162,23 @@ namespace BLL
 
         public override bool ValidateUser(string username, string password)
         {
-            int count = userDb.GetAll().Count(x => x.c_UserEmail == username && x.c_Password == password);
-            if (count != 0)
+            // BCrypty
+            var user = userDb.GetAll().FirstOrDefault(x => x.c_UserEmail == username);
+            if (user != null)
             {
-                return true;
+                return Hashing.ValidatePassword(password, user.c_Password);
             }
             else
                 return false;
+
+            // PRe BCrypt
+            //int count = userDb.GetAll().Count(x => x.c_UserEmail == username && x.c_Password == password);
+            //if (count != 0)
+            //{
+            //    return true;
+            //}
+            //else
+            //    return false;
         }
     }
 

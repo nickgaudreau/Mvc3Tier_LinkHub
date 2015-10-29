@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\yg13997\Google Drive\ASP.NET\MVC - 3 Tier - Udemy\Mvc3Tier_LinkHub\BOL\LinkHubModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Nick\Google Drive\ASP.NET\MVC - 3 Tier - Udemy\Mvc3Tier_LinkHub\BOL\LinkHubModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

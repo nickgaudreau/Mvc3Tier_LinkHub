@@ -10,6 +10,7 @@
         <EntityTypeShape EntityType="Mvc3TierModel.tbl_User" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
         <AssociationConnector Association="Mvc3TierModel.FK_tbl_Url_tbl_Category" ManuallyRouted="false" />
         <AssociationConnector Association="Mvc3TierModel.FK_tbl_Url_tbl_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Mvc3TierModel.sysdiagram" Width="1.5" PointX="3.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
